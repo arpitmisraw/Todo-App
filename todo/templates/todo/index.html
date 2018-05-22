@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block head %}
+	<title>
+		All Entries
+	</title>
+{% endblock %}
+
+
+
+{% block body %}	
+
+	<div class="container-fluid">
+		<div class="row align-items-center">
+			<div class="col-12">
+				<h1>
+					Hello 
+					<span style="text-transform: capitalize;">
+					{{ current_user }}
+					</span><br>
+					Your Todo Jobs!
+				</h1>
+			</div>
+			<div class="col-3" style="text-align: center;">
+				<p>
+					<a href="{% url 'add_list' %}">New Entry</a>
+				</p>
+			</div>
+			<div class="col-3 offset-6" style="text-align: center;">
+				<p>
+					<a href="{% url 'logout' %}">Logout</a>
+				</p>
+			</div>
+			<!-- <div class="col-3" style="text-align: center;">
+				<p>
+					<a href="{% url 'add_list' %}">New Entry</a>
+				</p>
+			</div>
+			<div class="col-3" style="text-align: center;">
+				<p>
+					<a href="{% url 'add_list' %}">New Entry</a>
+				</p>
+			</div> -->
+		</div>
+	</div>
+	
+
+
+	{% for i in items %}
+		<div class="container entry">
+			<div class="row">
+				<div class="col-12">
+					<h4>
+						Title
+					</h4>
+					<h2>
+						{{ i.title }}
+					</h2>
+					<hr>
+
+					<h4>
+						Description
+					</h4>
+					<h2>
+						{{ i.description }}
+					</h2>
+					<hr>
+
+					<h4>
+						Date Added
+					</h4>
+					<h2>
+						{{ i.date_added }}
+					</h2>
+					<hr>
+					<div class="row">
+						<div class="col-6">
+							{% if i.check %}
+								<h4>
+									Completed
+								</h4>
+							{% else %}
+								<h4>
+									<a href="{% url 'check' i.id %}">Completed?</a>
+								</h4>
+							{% endif %}
+						</div>
+						<div class="col-6">
+							<h4 class="delete-link">
+								<a href="{% url 'delete' i.id %}">Delete Entry</a>
+							</h4>
+						</div>
+					</div>
+					
+					
+				</div>		
+			</div>		
+		</div>
+	{% endfor %}
+
+	
+
+	
+		
+	
+{% endblock %}
+
+	
